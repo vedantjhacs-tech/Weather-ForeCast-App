@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header: App Title, Theme Toggle & Unit Switcher -->
+    <header class="app-header">
+      <div class="logo">
+        <h1>WeatherPulse</h1>
+      </div>
+      <div class="header-controls">
+        <!-- Unit Switcher -->
+        <div class="unit-toggle" role="group" aria-label="Temperature unit selection">
+          <button id="unit-c" class="unit-btn active" data-unit="celsius">°C</button>
+          <button id="unit-f" class="unit-btn" data-unit="fahrenheit">°F</button>
+        </div>
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Dark/Light Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <form id="search-form" class="search-form">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Search for a city (e.g. Chandigarh, London)..." 
+          autocomplete="off"
+          required
+        >
+        <button type="submit" id="search-btn" class="primary-btn">Search</button>
+        <button type="button" id="geo-btn" class="secondary-btn" title="Use current location">
+          📍 Use My Location
+        </button>
+      </form>
+
+      <!-- Recent Searches Container -->
+      <div id="recent-searches-container" class="recent-searches-container hidden">
+        <span class="recent-title">Recent:</span>
+        <div id="recent-chips" class="recent-chips"></div>
+      </div>
+    </section>
+
+    <!-- Dynamic Status Banner (Loading / Errors) -->
+    <div id="status-container" class="status-container hidden" role="alert">
+      <p id="status-message"></p>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="weather-content" class="weather-content hidden">
+      
+      <!-- Top Bar: Location Header & Refresh Button -->
+      <div class="weather-header">
+        <div>
+          <h2 id="location-name">--</h2>
+          <p id="last-updated" class="last-updated">Last updated: --</p>
+        </div>
+        <button id="refresh-btn" class="secondary-btn">↻ Refresh</button>
+      </div>
+
+      <!-- Current Weather Hero Card -->
+      <section class="current-weather-card">
+        <div class="current-main">
+          <div class="weather-visual">
+            <span id="current-icon" class="weather-icon">☀️</span>
+            <div class="temp-display">
+              <span id="current-temp" class="temp-value">--</span>
+              <span class="temp-unit">°C</span>
+            </div>
+          </div>
+          <div class="weather-condition-box">
+            <h3 id="current-condition">--</h3>
+            <p>Feels like: <span id="feels-like-temp">--</span><span class="temp-unit">°C</span></p>
+          </div>
+        </div>
+
+        <!-- Additional Weather Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Humidity</span>
+            <span id="humidity-val" class="metric-value">--</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Wind Speed</span>
+            <span id="wind-val" class="metric-value">--</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Precipitation</span>
+            <span id="precip-val" class="metric-value">--</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Sunrise / Sunset</span>
+            <span id="sun-val" class="metric-value">-- / --</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7-Day Forecast Section -->
+      <section class="forecast-section">
+        <h3>7-Day Forecast</h3>
+        <div id="forecast-grid" class="forecast-grid">
+          <!-- Daily forecast cards will be injected dynamically via JavaScript -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
