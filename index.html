@@ -1,120 +1,369 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Forecast App</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <div class="app-container">
-    <!-- Header: App Title, Theme Toggle & Unit Switcher -->
+
+    <!-- Header -->
     <header class="app-header">
+
       <div class="logo">
         <h1>WeatherPulse</h1>
       </div>
+
       <div class="header-controls">
+
         <!-- Unit Switcher -->
-        <div class="unit-toggle" role="group" aria-label="Temperature unit selection">
-          <button id="unit-c" class="unit-btn active" data-unit="celsius">°C</button>
-          <button id="unit-f" class="unit-btn" data-unit="fahrenheit">°F</button>
+        <div
+          class="unit-toggle"
+          role="group"
+          aria-label="Temperature unit selection"
+        >
+
+          <button
+            id="unit-c"
+            class="unit-btn active"
+            data-unit="celsius"
+            type="button"
+            aria-label="Use Celsius"
+            aria-pressed="true"
+          >
+            °C
+          </button>
+
+          <button
+            id="unit-f"
+            class="unit-btn"
+            data-unit="fahrenheit"
+            type="button"
+            aria-label="Use Fahrenheit"
+            aria-pressed="false"
+          >
+            °F
+          </button>
+
         </div>
+
         <!-- Theme Toggle -->
-        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Dark/Light Mode">
+        <button
+          id="theme-toggle-btn"
+          class="icon-btn"
+          type="button"
+          aria-label="Toggle Dark/Light Mode"
+          aria-pressed="false"
+        >
           <span id="theme-icon">🌙</span>
         </button>
+
       </div>
+
     </header>
+
 
     <!-- Search Section -->
     <section class="search-section">
+
       <form id="search-form" class="search-form">
-        <input 
-          type="text" 
-          id="search-input" 
-          placeholder="Search for a city (e.g. Chandigarh, London)..." 
+
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for a city (e.g. Chandigarh, London)..."
           autocomplete="off"
+          aria-label="Enter city name"
           required
         >
-        <button type="submit" id="search-btn" class="primary-btn">Search</button>
-        <button type="button" id="geo-btn" class="secondary-btn" title="Use current location">
+
+        <button
+          type="submit"
+          id="search-btn"
+          class="primary-btn"
+          aria-label="Search for weather"
+        >
+          Search
+        </button>
+
+        <button
+          type="button"
+          id="geo-btn"
+          class="secondary-btn"
+          title="Use current location"
+          aria-label="Use my current location"
+        >
           📍 Use My Location
         </button>
+
       </form>
 
-      <!-- Recent Searches Container -->
-      <div id="recent-searches-container" class="recent-searches-container hidden">
-        <span class="recent-title">Recent:</span>
-        <div id="recent-chips" class="recent-chips"></div>
+
+      <!-- Recent Searches -->
+      <div
+        id="recent-searches-container"
+        class="recent-searches-container hidden"
+      >
+
+        <span class="recent-title">
+          Recent:
+        </span>
+
+        <div
+          id="recent-chips"
+          class="recent-chips"
+          aria-label="Recent searches"
+        ></div>
+
       </div>
+
     </section>
 
-    <!-- Dynamic Status Banner (Loading / Errors) -->
-    <div id="status-container" class="status-container hidden" role="alert">
+
+    <!-- Dynamic Status Banner -->
+    <div
+      id="status-container"
+      class="status-container hidden"
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       <p id="status-message"></p>
     </div>
 
-    <!-- Main Content Area -->
-    <main id="weather-content" class="weather-content hidden">
-      
-      <!-- Top Bar: Location Header & Refresh Button -->
+
+    <!-- Main Weather Content -->
+    <main
+      id="weather-content"
+      class="weather-content hidden"
+      aria-live="polite"
+    >
+
+
+      <!-- Weather Header -->
       <div class="weather-header">
+
         <div>
-          <h2 id="location-name">--</h2>
-          <p id="last-updated" class="last-updated">Last updated: --</p>
+
+          <h2 id="location-name">
+            --
+          </h2>
+
+          <p
+            id="last-updated"
+            class="last-updated"
+          >
+            Last updated: --
+          </p>
+
         </div>
-        <button id="refresh-btn" class="secondary-btn">↻ Refresh</button>
+
+        <button
+          id="refresh-btn"
+          class="secondary-btn"
+          type="button"
+          aria-label="Refresh weather data"
+        >
+          ↻ Refresh
+        </button>
+
       </div>
 
-      <!-- Current Weather Hero Card -->
-      <section class="current-weather-card">
+
+      <!-- Current Weather Card -->
+      <section
+        class="current-weather-card"
+        aria-label="Current weather"
+      >
+
         <div class="current-main">
+
           <div class="weather-visual">
-            <span id="current-icon" class="weather-icon">☀️</span>
+
+            <span
+              id="current-icon"
+              class="weather-icon"
+              aria-hidden="true"
+            >
+              ☀️
+            </span>
+
             <div class="temp-display">
-              <span id="current-temp" class="temp-value">--</span>
-              <span class="temp-unit">°C</span>
+
+              <span
+                id="current-temp"
+                class="temp-value"
+              >
+                --
+              </span>
+
+              <span
+                class="temp-unit"
+                aria-label="degrees Celsius"
+              >
+                °C
+              </span>
+
             </div>
+
           </div>
+
+
           <div class="weather-condition-box">
-            <h3 id="current-condition">--</h3>
-            <p>Feels like: <span id="feels-like-temp">--</span><span class="temp-unit">°C</span></p>
+
+            <h3 id="current-condition">
+              --
+            </h3>
+
+            <p>
+              Feels like:
+              <span id="feels-like-temp">
+                --
+              </span>
+
+              <span
+                class="temp-unit"
+                aria-label="degrees Celsius"
+              >
+                °C
+              </span>
+            </p>
+
           </div>
+
         </div>
 
-        <!-- Additional Weather Metrics Grid -->
+
+        <!-- Weather Metrics -->
         <div class="metrics-grid">
+
           <div class="metric-item">
-            <span class="metric-label">Humidity</span>
-            <span id="humidity-val" class="metric-value">--</span>
+
+            <span class="metric-label">
+              Humidity
+            </span>
+
+            <span
+              id="humidity-val"
+              class="metric-value"
+            >
+              --
+            </span>
+
           </div>
+
+
           <div class="metric-item">
-            <span class="metric-label">Wind Speed</span>
-            <span id="wind-val" class="metric-value">--</span>
+
+            <span class="metric-label">
+              Wind Speed
+            </span>
+
+            <span
+              id="wind-val"
+              class="metric-value"
+            >
+              --
+            </span>
+
           </div>
+
+
           <div class="metric-item">
-            <span class="metric-label">Precipitation</span>
-            <span id="precip-val" class="metric-value">--</span>
+
+            <span class="metric-label">
+              Precipitation
+            </span>
+
+            <span
+              id="precip-val"
+              class="metric-value"
+            >
+              --
+            </span>
+
           </div>
+
+
           <div class="metric-item">
-            <span class="metric-label">Sunrise / Sunset</span>
-            <span id="sun-val" class="metric-value">-- / --</span>
+
+            <span class="metric-label">
+              Sunrise / Sunset
+            </span>
+
+            <span
+              id="sun-val"
+              class="metric-value"
+            >
+              -- / --
+            </span>
+
           </div>
+
         </div>
+
       </section>
 
-      <!-- 7-Day Forecast Section -->
-      <section class="forecast-section">
-        <h3>7-Day Forecast</h3>
-        <div id="forecast-grid" class="forecast-grid">
-          <!-- Daily forecast cards will be injected dynamically via JavaScript -->
+
+      <!-- Farming Advisory -->
+      <section
+        id="farming-advisory"
+        class="advisory-section hidden"
+        aria-label="Farming advisory"
+      >
+
+        <div class="advisory-header">
+
+          <h3>
+            🌱 Farming Advisory
+          </h3>
+
+          <p>
+            Simple recommendations based on current weather conditions.
+          </p>
+
         </div>
+
+        <div
+          id="advisory-content"
+          class="advisory-content"
+        ></div>
+
       </section>
+
+
+      <!-- 7-Day Forecast -->
+      <section
+        class="forecast-section"
+        aria-label="7-day weather forecast"
+      >
+
+        <h3>
+          7-Day Forecast
+        </h3>
+
+        <div
+          id="forecast-grid"
+          class="forecast-grid"
+        >
+          <!-- Forecast cards inserted by JavaScript -->
+        </div>
+
+      </section>
+
 
     </main>
+
   </div>
 
+
   <script src="script.js"></script>
+
 </body>
+
 </html>
